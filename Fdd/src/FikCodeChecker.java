@@ -1,7 +1,7 @@
 
 public class FikCodeChecker {
 
-	public static String fikCodeChecker(String fikCode) {
+	public String fikCodeChecker(String fikCode) {
 		// Length of a Fik code -1
 		int lengde = 29;
 		

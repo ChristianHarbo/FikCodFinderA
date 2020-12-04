@@ -21,9 +21,10 @@ public class FileTesterExists {
 		File fill = new File(fileAt+whichFill+".txt"); 
 		
 		// check if file exists if true, sends back feedback
-		if (fill.exists())
+		if (fill.exists()) {
+			System.out.println("fille er der ");
 			return fileAt+whichFill+".txt";
-		
+		}
 		//If false  
 		
 		

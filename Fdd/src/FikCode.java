@@ -16,32 +16,26 @@ import java.util.Scanner;
 
 public class FikCode {
 
-	
 	public static void main(String[] args) throws IOException {
 
 		// open classes
-		FileTesterExists fileExists= new FileTesterExists();
+		FileTesterExists fileExists = new FileTesterExists();
 		FikCodeChecker checkFik = new FikCodeChecker();
-		
-		
 
 		ArrayList<String> correctResultArray = new ArrayList<String>();
 		ArrayList<String> erroResultArray = new ArrayList<String>();
-		
-		
+
 //----------------------------------------------------------------------
 
 		// handeling the file
 		try {
 
-			
-
 			///// check if file exists
 			String fileAt = fileExists.fileTesterExists();
 			System.out.println(fileAt);
-			//fileExists.fileTesterExists()
+			// fileExists.fileTesterExists()
 			File oppeFill = new File(fileAt);
-			
+
 			Scanner readFil = new Scanner(oppeFill);
 
 			while (readFil.hasNextLine()) {
@@ -56,24 +50,28 @@ public class FikCode {
 				 * List of where thinks are 3 Taps thene vendor No. 46 Taps thene DKK 48 Taps
 				 * thene invoice No. 55 Taps thene Fik code.
 				 */
-				// System.out.println("Vender: " + arrLine[3] + "\tInv: " + arrLine[47] + "\tFik
-				// Code: "+" valuta "+ arrLine[46]);
-				if (arrLine[46].equals("DKK") || arrLine[46].equals("dkk")) {
 
-					String fikCodeCheakerResul = checkFik.fikCodeChecker(arrLine[55]);
+				//  Check if the arrLine is long enough.
+				if (arrLine.length > 17) {
+					
+					
+					if (arrLine[18].equals("DKK") || arrLine[18].equals("dkk")) {
 
-					if (fikCodeCheakerResul.equals("correct")) {
-						correctResultArray.add("Vender: " + arrLine[3] + "\tInv: " + arrLine[47] + "\tFik Code: "
-								+ arrLine[55] + "\t" + fikCodeCheakerResul);
-						System.out.println("Vender: " + arrLine[3] + "\tInv: " + arrLine[47] + "\tFik Code: "
-								+ arrLine[55] + "\t" + fikCodeCheakerResul);
-					} else {
-						erroResultArray.add("Vender: " + arrLine[3] + "\tInv: " + arrLine[47] + "\tFik Code: "
-								+ arrLine[55] + "\t" + fikCodeCheakerResul);
-						System.out.println("Vender: " + arrLine[3] + "\tInv: " + arrLine[47] + "\tFik Code: "
-								+ arrLine[55] + "\t" + fikCodeCheakerResul);
+						String fikCodeCheakerResul = checkFik.fikCodeChecker(arrLine[27]);
+
+						if (fikCodeCheakerResul.equals("correct")) {
+							correctResultArray.add("Vender: " + arrLine[0] + "\tInv: " + arrLine[19] + "\tFik Code: "
+									+ arrLine[27] + "\t" + fikCodeCheakerResul);
+							System.out.println("Vender: " + arrLine[0] + "\tInv: " + arrLine[19] + "\tFik Code: "
+									+ arrLine[27] + "\t" + fikCodeCheakerResul);
+						} else {
+							erroResultArray.add("Vender: " + arrLine[0] + "\tInv: " + arrLine[19] + "\tFik Code: "
+									+ arrLine[27] + "\t" + fikCodeCheakerResul);
+							System.out.println("Vender: " + arrLine[0] + "\tInv: " + arrLine[19] + "\tFik Code: "
+									+ arrLine[27] + "\t" + fikCodeCheakerResul);
+						}
+
 					}
-
 				}
 
 			}
