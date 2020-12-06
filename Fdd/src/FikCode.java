@@ -51,24 +51,37 @@ public class FikCode {
 				 * thene invoice No. 55 Taps thene Fik code.
 				 */
 
-				//  Check if the arrLine is long enough.
+				// Check if the arrLine is long enough.
 				if (arrLine.length > 17) {
-					
-					
-					if (arrLine[18].equals("DKK") || arrLine[18].equals("dkk")) {
+					int fikcodeAt = 27;
+					int vendorNoAt = 0;
+					int currencyAt = 18;
+					int InvNoAt = 19;
 
-						String fikCodeCheakerResul = checkFik.fikCodeChecker(arrLine[27]);
+					String theFikcode = " ";
 
-						if (fikCodeCheakerResul.equals("correct")) {
-							correctResultArray.add("Vender: " + arrLine[0] + "\tInv: " + arrLine[19] + "\tFik Code: "
-									+ arrLine[27] + "\t" + fikCodeCheakerResul);
-							System.out.println("Vender: " + arrLine[0] + "\tInv: " + arrLine[19] + "\tFik Code: "
-									+ arrLine[27] + "\t" + fikCodeCheakerResul);
+					if (arrLine[currencyAt].equals("DKK") || arrLine[currencyAt].equals("dkk")) {
+
+						String isTheFikcodeCorrect = "k";
+
+						// is The Fikcode on the line.
+						if (arrLine.length >= 26) {
+
+							// here is the Fikcode being checked if id is living up to the parameters.
+							isTheFikcodeCorrect = checkFik.fikCodeChecker(arrLine[fikcodeAt]);
+							theFikcode = arrLine[fikcodeAt];
 						} else {
-							erroResultArray.add("Vender: " + arrLine[0] + "\tInv: " + arrLine[19] + "\tFik Code: "
-									+ arrLine[27] + "\t" + fikCodeCheakerResul);
-							System.out.println("Vender: " + arrLine[0] + "\tInv: " + arrLine[19] + "\tFik Code: "
-									+ arrLine[27] + "\t" + fikCodeCheakerResul);
+							isTheFikcodeCorrect = "\t\t\t\tError";
+						}
+
+						String TextToEnduser = ("Vender: " + arrLine[vendorNoAt] + "\tInv: " + arrLine[InvNoAt]
+								+ "\tFik Code: " + theFikcode + "\t" + isTheFikcodeCorrect);
+
+						if (isTheFikcodeCorrect.equals("correct")) {
+							correctResultArray.add(TextToEnduser);
+						} else {
+							erroResultArray.add(TextToEnduser);
+
 						}
 
 					}
@@ -78,14 +91,20 @@ public class FikCode {
 
 			readFil.close();
 
-			// PrintResult.printOutResult(correctResultArray, erroResultArray, whichFill);
-
 		} catch (Exception e) {
 
 			System.out.println("An error occurred.;o(");
 			e.printStackTrace();
 		}
 
+		// out put the data for the user
+		for (String outPutcorrect : correctResultArray) {
+			System.out.println(outPutcorrect);
+		}
+		System.out.println("\n____________________________________________________________________________\n\n");
+		for (String outPuterros : erroResultArray) {
+			System.out.println(outPuterros);
+		}
 	}
 
 }
