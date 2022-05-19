@@ -1,28 +1,50 @@
 
 public class FikCodeChecker {
-
+	
 	public String fikCodeChecker(String fikCode) {
+		/*
+		 *+71<134329012661031+83677902
+		 *+04<2150263480000023+2478250
+		 * 
+		 */
+		
 		// Length of a Fik code -1
 		int lengde = 29;
 		
 		// Length of a Fik code special symbols -1
 		int numbersOfNumberInFik = 24;
-
+		int isItAZeroFour = 0;
+		
 		int extraLength = 0;
 
 		String nunbersInFik = "";
 
 		boolean ifErro = false;
-
-		if (fikCode.indexOf("71") == 2) {
+		
+		// what is after * in the fikcode 
+		 
+		String  whichTaypOfFikcode= "";
+		
+		for (int i = 2; i<4; i++)
+			whichTaypOfFikcode = whichTaypOfFikcode +fikCode.charAt(i);
+		
+		
+		
+		System.out.println(whichTaypOfFikcode);
+		
+		if (whichTaypOfFikcode != "71") {
+			//System.out.println(71);
 			ifErro = true;
-		} else if (fikCode.indexOf("04") == 2) {
+		} else if (whichTaypOfFikcode != "04") {
+			//System.out.println("04");
+			isItAZeroFour = 1;
 			ifErro = true;
 			extraLength++;
 			
 		}
 
-		if (ifErro == true) {
+		if (ifErro 
+				== true) {
 			// Checking for numbers
 			for (int i = 0; i < lengde - 1 + extraLength; i++) {
 
@@ -46,7 +68,6 @@ public class FikCodeChecker {
 			
 
 		}
-
 		if (ifErro) {
 			return "correct";
 		} else {
